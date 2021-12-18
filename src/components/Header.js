@@ -17,7 +17,7 @@ const Header = () => {
       <div className="row">
         <div className="col-md-6 l lt-section">
           <div id="textbox">
-          <div id="title">Weather App</div>
+          <div id="title">Geo-Weather App</div>
           <div id="text">Know street level weather from around the world!</div>
           </div>
         </div>
