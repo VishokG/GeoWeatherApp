@@ -1,0 +1,150 @@
+/*Variables*/
+
+:root {
+  --color1: #f7f7f7;
+  --color2: #006838;
+}
+
+/*Base Style*/
+
+#root {
+  font-family: "Cardo", serif;
+}
+/* 
+.l {
+  border: solid black 1px;
+} */
+
+.lt-section,
+.rb-section {
+  height: 50vh;
+}
+
+.lt-section {
+  background-color: var(--color1);
+  color: var(--color2);
+  position: relative;
+}
+
+#textbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+#title {
+  text-align: center;
+  font-size: 2rem;
+  width: 50%;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#text {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+}
+
+.rb-section {
+  background-color: var(--color2);
+  position: relative;
+}
+
+#imageContainer {
+  height: 90%;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+td {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+    width: 60px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#inputs {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+#cityInput {
+  display: block;
+  margin-right: 10px;
+}
+
+#map {
+  height: 70vh;
+  width: 100vw;
+}
+
+#footer {
+  background-color: var(--color1);
+  color: var(--color2);
+  height: 25vh;
+  padding: 10px 10px;
+}
+
+#disclaimer {
+  font-size: 11px;
+}
+
+#instructions {
+  font-size: 13px;
+}
+
+#credits {
+  margin-top: 60px;
+  font-size: 18px;
+  text-align: center;
+}
+/*Fonts*/
+
+/*Tablets*/
+@media screen and (min-width: 620px) {
+}
+
+/*Laptops*/
+@media screen and (min-width: 960px) {
+  .left-section,
+  .right-section {
+    padding: 15%;
+  }
+  #map {
+    margin: auto;
+  }
+
+  #footer {
+    height: 20vh;
+  }
+
+  #disclaimer {
+    
+  }
+
+  #credits {
+    margin-top: 60px;
+  }
+}
+
+/*Desktop*/
+@media screen and (min-width: 1200px) {
+}
