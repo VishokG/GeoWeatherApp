@@ -16,9 +16,22 @@ const NewInput = (props) => {
     },
   });
 
-  const filterOptions = createFilterOptions({
-    limit: 10,
-  });
+  const [newCityS, setNewCityS] = React.useState();
+  const [newZoomS, setNewZoomS] = React.useState("Street");
+  function handleCityChange(e) {
+    setNewCityS(e.target.value);
+  }
+
+  function handleZoomChange(e) {
+    props.getNewZoomInfo(e.target.value);
+    setNewZoomS(e.target.value);
+    // console.log(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    props.getCityZoomInfo(newCityS, newZoomS);
+    e.preventDefault();
+  }
 
   React.useEffect(() => {
     fetch("data/city.list.json")
@@ -32,43 +45,46 @@ const NewInput = (props) => {
   //   props.getCityInfo(valueSelectedS);
   // });
 
-
   return (
     <div id="inputs">
-        <Autocomplete
-          onChange={(e, newVal) => {
-            if (newVal !== null) {
-              props.getCityInfo(newVal);
-            }
-          }}
-          disablePortal
-          filterOptions={filterOptions}
-          options={cityValueS}
-          getOptionLabel={(option) => {
-            return `${option.name}, ${option.country}`;
-          }}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="City" />}
-        />
-        <Autocomplete
-          onChange={(e, newVal) => {
-            if (newVal !== null) {
-              props.getZoomInfo(newVal);
-            }
-          }}
-          disablePortal
-          filterOptions={filterOptions}
-          options={[
-            { level: "Street", value: 14 },
-            { level: "City", value: 10 },
-            { level: "State", value: 8 },
-          ]}
-          getOptionLabel={(option) => {
-            return `${option.level}`;
-          }}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Zoom Level" />}
-        />
+      <form className="infoForm" onSubmit={handleSubmit}>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-4 mx-auto">
+              <div class="form-group i">
+                <input
+                  onChange={handleCityChange}
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  placeholder="City"
+                />
+              </div>
+            </div>
+            <div className="col-md-4 mx-auto">
+              <div class="form-group i">
+                <select
+                  class="form-control"
+                  id="zoomLevel"
+                  onChange={handleZoomChange}
+                >
+                  <option disabled selected>
+                    Select Zoom
+                  </option>
+                  <option>Street</option>
+                  <option>City</option>
+                  <option>State</option>
+                </select>
+              </div>
+            </div>
+            <div className="col-md-4 d-grid gap-2 mx-auto">
+              <button type="submit" class="btn btn-primary mb-2 i">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

@@ -80,15 +80,18 @@ body {
   overflow-x: hidden;
 }
 
-#inputs {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
+
+
+.infoForm {
+  background-color: var(--color1);
 }
 
-#cityInput {
-  display: block;
-  margin-right: 10px;
+.i {
+  margin-top: 10px;
+}
+
+.btn {
+  background-color: var(--color2);
 }
 
 #map {

@@ -10,7 +10,20 @@ function Map(props) {
   let apiSwitch = React.useRef(0);
   const L = window.L;
   // let startingCoordinates = [12.9716, 77.5946];
-  let startingCoordinates = [props.cityInfo.coord.lat, props.cityInfo.coord.lon];
+  let startingCoordinates = [props.newCityInfo.lat, props.newCityInfo.lon];
+  console.log(props.newCityInfo.lat);
+  console.log(props.newZoomInfo);
+
+  let zoomLevel;
+  if(props.newZoomInfo === "State") {
+    zoomLevel = 8;
+  }
+  else if(props.newZoomInfo === "City") {
+    zoomLevel = 10;
+  }
+  else if(props.newZoomInfo === "Street") {
+    zoomLevel = 14;
+  }
 
   React.useEffect(() => {
     if(f.current !== undefined) {
@@ -26,7 +39,7 @@ function Map(props) {
       trackResize: false,
       touchZoom: false,
       scrollWheelZoom: false,
-    }).setView([startingCoordinates[0], startingCoordinates[1]], props.zoomInfo.value);
+    }).setView([startingCoordinates[0], startingCoordinates[1]], zoomLevel);
 
     L.tileLayer(
       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
@@ -109,7 +122,7 @@ function Map(props) {
       return false;
     }
 
-    let reqNo = 0;
+    // let reqNo = 0;
     addIcontoMap(startingCoordinates);
     // addIcontoMap([startingCoordinates[0] + (0.9), startingCoordinates[1]+ (1.2)]);
     // for(var i = -2; i < 3; i++) {
@@ -123,13 +136,13 @@ function Map(props) {
       addIcontoMap([e.latlng.lat, e.latlng.lng])
     });
     let zoomLevelParameters;
-    if(props.zoomInfo.value === 8) {
+    if(zoomLevel === 8) {
       zoomLevelParameters = [0.9, 1.2];
     }
-    else if(props.zoomInfo.value === 10) {
+    else if(zoomLevel === 10) {
       zoomLevelParameters = [0.3, 0.4];
     }
-    else if(props.zoomInfo.value === 14) {
+    else if(zoomLevel === 14) {
       zoomLevelParameters = [0.01, 0.02];
     }
     map.on("move", (e) => {
