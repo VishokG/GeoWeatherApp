@@ -51,7 +51,7 @@ function Map(props) {
         tileSize: 512,
         zoomOffset: -1,
         accessToken:
-          "pk.eyJ1Ijoid3VsZmYyNyIsImEiOiJja3dxaDAxazIwNjV3MnVueDhhdG9mc25kIn0.LCMO8pKVvHXEzZpWDbZ4aQ",
+          process.env.ACCESS_TOKEN,
       }
     ).addTo(map);
 
@@ -77,11 +77,11 @@ function Map(props) {
       // L.marker(coordinates, { icon: myIcon }).addTo(map)
       let apiKey;
       if(apiSwitch.current === 0) {
-        apiKey = "dbb0fe47ff2f175d19d77494781b73fa";
+        apiKey = process.env.API_KEY1;
         apiSwitch.current = 1;
       }
       else {
-        apiKey = "5230a46ba502a0345854c111e6e2c254";
+        apiKey = process.env.API_KEY2;
         apiSwitch.current = 0;
       }
       var config = {
